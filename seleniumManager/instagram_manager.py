@@ -14,17 +14,24 @@ import re
 
 driver = webdriver
 is_follow = False
+silencer = False
 
-
-def init_service(silencer):
+def init_service():
     global driver
     service = Service(ChromeDriverManager().install())
     chrome_options = webdriver.ChromeOptions()
-
+    print(silencer)
     if (silencer == True):
         chrome_options.add_argument("--headless")
 
     chrome_options.add_argument('--user-data-dir=./User_Data')
+    chrome_options.add_argument("--disable-infobars")
+    chrome_options.add_argument("start-maximized")
+    chrome_options.add_argument("--disable-extensions")
+    # Pass the argument 1 to allow and 2 to block notifications
+    chrome_options.add_experimental_option("prefs", { 
+        "profile.default_content_setting_values.notifications": 1 
+    })
     driver = webdriver.Chrome(service=service, chrome_options=chrome_options)
     driver.get("https://instagram.com")
     driver.get_screenshot_as_file("screenshot.png")
@@ -50,14 +57,11 @@ def connect_user():
         # click register login/pwd 
         registelogin_input = driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/div/div/section/div/button')
         registelogin_input.click()
-        time.sleep(8)
-        # desactivate notifications
-        driver.find_elements_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm')
-        driver.find_element(by=By.XPATH, value ='/html/body/div[5]/div/div/div/div[3]/button[2]').click()
-        driver.quit()
+        time.sleep(5)
     except Exception as e:
         print(e)
-
+    finally:
+        driver.quit()
 
 def select_search_box():
     input_box_searchContact = driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]')
@@ -140,7 +144,7 @@ def get_number_subscriptions():
 
                                      
 def quit_selenium():
-    driver.quit()
+    quit
     print("quit")
 
 

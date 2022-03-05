@@ -1,3 +1,2 @@
-2022/03/05-01:09:32.607 e603 Reusing MANIFEST /Users/sarahb/Desktop/Python-Selenium/Python-Selenium/socialNetworkBot/User_Data/Default/shared_proto_db/metadata/MANIFEST-000001
-2022/03/05-01:09:32.607 e603 Recovering log #3
-2022/03/05-01:09:32.627 e603 Reusing old log /Users/sarahb/Desktop/Python-Selenium/Python-Selenium/socialNetworkBot/User_Data/Default/shared_proto_db/metadata/000003.log 
+2022/03/05-02:01:59.883 8b03 Creating DB /Users/sarahb/Projects/Instabot/User_Data/Default/shared_proto_db/metadata since it was missing.
+2022/03/05-02:02:00.046 8b03 Reusing MANIFEST /Users/sarahb/Projects/Instabot/User_Data/Default/shared_proto_db/metadata/MANIFEST-000001

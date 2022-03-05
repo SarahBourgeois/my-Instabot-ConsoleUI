@@ -14,33 +14,37 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 TIME_SLEEP = 2
-SILENCER = False
 
 def connect_account_to_instabot():
     try:
-        instagram_manager.init_service(SILENCER)
+        instagram_manager.init_service()
         time.sleep(2)
         instagram_manager.connect_user()
         textdisplay.display_connection_done()
     except Exception as e:
         print(e)
+    finally:
+        instagram_manager.quit_selenium()
 
 def get_account_information():
     try:       
-        instagram_manager.init_service(SILENCER)
+        instagram_manager.init_service()
         instagram_manager.go_profile()
         publication_number = instagram_manager.get_number_publications()
         follower_number = instagram_manager.get_number_followers()
         subscription_number = instagram_manager.get_number_subscriptions()
         textdisplay.display_account_information(publication_number, follower_number, subscription_number)
-
     except Exception as e:
         print(e)
+    finally:
+        instagram_manager.quit_selenium()
+
+
 
 def launch_instagram_bot():
     first_open = True
     # init service
-    instagram_manager.init_service(SILENCER)
+    instagram_manager.init_service()
     time.sleep(4)
     # search general element
     searchBox = instagram_manager.select_search_box()
