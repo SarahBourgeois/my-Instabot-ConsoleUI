@@ -33,8 +33,9 @@ def get_account_information():
     session_id = getconfig.get_bot_session_id()
     exectutor_url = getconfig.get_bot_url_executor()
     print(session_id)
-    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
     print("get account_info is running...")
+
+    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
     account_bot.get_account_information(driver)
 
 
