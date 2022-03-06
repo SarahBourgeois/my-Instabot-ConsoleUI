@@ -13,8 +13,10 @@ from selenium.webdriver.chrome.options import Options
 # to a sessionId and the executor Url 
 
 silencer = False
+driver = webdriver
 
 def init_bot_connection_service():
+    global driver
     service = Service(ChromeDriverManager().install())
     chrome_options = webdriver.ChromeOptions()
     if(silencer == True):
@@ -35,10 +37,11 @@ def init_bot_connection_service():
 
 
 def create_driver_session(session_id, executor_url):
+    global driver
+
     from selenium.webdriver.remote.webdriver import WebDriver as RemoteWebDriver
     # Save the original function, so we can revert our patch
     org_command_execute = RemoteWebDriver.execute
-
     def new_command_execute(self, command, params=None):
         if command == "newSession":
             # Mock the response

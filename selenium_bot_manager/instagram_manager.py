@@ -12,7 +12,7 @@ import time
 import re
 
 
-is_follow = False
+is_follow = True
 
 
 def connect_user(driver):
@@ -74,8 +74,10 @@ def like_publication(driver):
     print("like publication is ok")
 
 def close_publication_page(driver):
-    time.sleep(2)
-    driver.find_element(by=By.XPATH, value='/html/body/div[6]/div[1]/button').click
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value='/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/div').click()
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value='/html/body/div[7]/div/div/div/div/button[3]').click()
 
 # already copy paste
 def is_already_follow(driver):
@@ -91,7 +93,6 @@ def is_already_follow(driver):
     except:
         print("Can't know if already follow or not")
 
-# already copy paste
 
 def register_followed_person(driver):
     follow = driver.find_element_by_css_selector("body > div.RnEpo._Yhr4 > div.pbNvD.QZZGH.bW6vo > div > article > div > div.HP0qD > div > div > div.UE9AK > div > header > div.o-MQd.z8cbW > div.PQo_0.RqtMr > div.e1e1d > div > span > a").text
@@ -118,15 +119,9 @@ def go_profile(driver):
     driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[6]/div[2]/div[2]/div[2]/a[1]').click()
     time.sleep(2)
 
-# already copy paste
-def get_number_publications(driver):
-    return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[1]/div/span').text
-# already copy paste
-def get_number_followers(driver):
-    return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/div/span').text
-# already copy paste
-def get_number_subscriptions(driver):
-    return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[3]/a/div/span').text
+def go_home(driver):
+    driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/nav/div[2]/div/div/div[1]/a/div').click()
+
 
 def quit_selenium():
     webdriver.Chrome().quit()

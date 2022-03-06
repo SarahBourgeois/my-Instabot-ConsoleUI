@@ -1,5 +1,5 @@
-import seleniumManager.instagram_manager as instagram_manager
-import seleniumManager.instabot_driver_service as instabot_driver_service
+import selenium_bot_manager.instagram_manager as instagram_manager
+import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
 import helpers.filehelper as helper
@@ -26,6 +26,7 @@ def connect_account_to_instabot():
         textdisplay.display_connection_done()
     except Exception as e:
         print(e)
+        
 def disconnect_bot_from_account():
     driver = instabot_driver_service.create_driver_session(getconfig.get_bot_session_id(), getconfig.get_bot_url_executor())
     try:

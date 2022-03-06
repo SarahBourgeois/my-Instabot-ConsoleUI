@@ -1,11 +1,12 @@
-# internal 
 import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
-import selenium_bot_manager.instabot_account_module as account_module
+# bot module
+import bots.like_and_follow_bot as liker_follower_bot
+import bots.account_bot as account_bot
+
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
 import helpers.filehelper as helper
-import bots.account_bot as account_bot
 # selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -22,27 +23,44 @@ import time
 TIME_SLEEP = 2
 
 def connect_account_to_instabot():
-    driver = instabot_driver_service.init_bot_connection_service()
-    time.sleep(2)
-    account_bot.connect_account_to_instabot(driver)
+    try:
+        print("begin to connect your account to the instabot")
+        driver = instabot_driver_service.init_bot_connection_service()
+        time.sleep(2)
+        account_bot.connect_account_to_instabot(driver)
+    except Exception as e:
+        print(e)
    
 def disconnect_bot_from_account():
-    account_bot.disconnect_bot_from_account()
+    try:
+        print("begin disconnect bot from your account...")
+        account_bot.disconnect_bot_from_account()
+    except Exception as e:
+        print(e)
 
 def get_account_information():
-    session_id = getconfig.get_bot_session_id()
-    exectutor_url = getconfig.get_bot_url_executor()
-    print(session_id)
-    print("get account_info is running...")
-
-    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
-    account_bot.get_account_information(driver)
+    try:
+        session_id = getconfig.get_bot_session_id()
+        exectutor_url = getconfig.get_bot_url_executor()
+        print("get account_info is running...")
+        driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
+        account_bot.get_account_information(driver)
+    except Exception as e:
+        print(e)
 
 
 def launch_liker_module():
     print("like_module is running...")
 
+def launch_follower_module():
+    print("follower_module is running")
 
+def launch_follower_and_liker_module():
+    print("Follower and liker module is running.")
+    session_id = getconfig.get_bot_session_id()
+    exectutor_url = getconfig.get_bot_url_executor()
+    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
+    liker_follower_bot.like_follow(driver)
 
 
 

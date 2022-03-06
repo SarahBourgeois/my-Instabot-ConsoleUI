@@ -34,10 +34,13 @@ def connect_user_to_instabot(driver):
         
 
 def get_number_publications(driver):
+    time.sleep(2)
     return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[1]/div/span').text
 # already copy paste
 def get_number_followers(driver):
+    time.sleep(2)
     return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/div/span').text
 # already copy paste
 def get_number_subscriptions(driver):
+    time.sleep(2)
     return driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/header/section/ul/li[3]/a/div/span').text

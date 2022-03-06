@@ -41,11 +41,13 @@ def disconnect_bot_from_account():
 
 
 def get_account_information(driver):
-    try:       
+    try:
         instagram_manager.go_profile(driver)
-        publication_number = instagram_manager.get_number_publications(driver)
-        follower_number = instagram_manager.get_number_followers(driver)
-        subscription_number = instagram_manager.get_number_subscriptions(driver)
+
+        publication_number = account_module.get_number_publications(driver)
+        follower_number = account_module.get_number_followers(driver)
+        subscription_number = account_module.get_number_subscriptions(driver)
         textdisplay.display_account_information(publication_number, follower_number, subscription_number)
+        instagram_manager.go_home(driver)
     except Exception as e:
         print(e)

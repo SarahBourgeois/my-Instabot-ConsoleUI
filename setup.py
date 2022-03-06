@@ -1,5 +1,6 @@
 
 import bots.instagram_bot as instagram_bot
+import bots.launcher as launcher
 import Ui.console.asciitext as asciitext
 import Ui.console.textdisplay as textdisplay
 import configuration.getconfig as getconfig
@@ -28,21 +29,21 @@ try:
             if(getconfig.get_bot_is_activate() == True):
                 response = textdisplay.display_bot_already_connect()
                 if (response == True):
-                    instagram_bot.disconnect_bot_from_account()
+                    launcher.disconnect_bot_from_account()
             else:
                 asciitext.display_connection()
-                instagram_bot.connect_account_to_instabot()
+                launcher.connect_account_to_instabot()
                 getconfig.set_bot_status("yes")
              
         if currentArgument in ("-i", "--instagram"):
             if(getconfig.get_bot_is_activate() == True):
-                instagram_bot.launch_instagram_bot()
+                launcher.launch_follower_and_liker_module()
             else:
                 textdisplay.display_activation_mandatory()
         
         if currentArgument in ("-a", "--account"):
             asciitext.display_account_info()
-            instagram_bot.get_account_information()
+            launcher.get_account_information()
              
 except getopt.error as err:
     print (str(err))
