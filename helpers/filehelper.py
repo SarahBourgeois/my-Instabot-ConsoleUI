@@ -1,6 +1,8 @@
 import csv
 from collections import defaultdict
 import os
+import sys
+import shutil
 
 def readCsvFile():
     script_dir = os.path.dirname(__file__)  # Script directory
@@ -18,6 +20,17 @@ def registerData(follower):
     file1 = open("followedPeople.txt","w")
     file1.write(follower + "\n")
     print("Stored successfully")
+
+def delete_folder_contents():
+    folder_path = './User_Data'
+    try:
+        shutil.rmtree(folder_path)
+    except OSError as e:
+        print("Error: %s - %s." % (e.filename, e.strerror))
+
+
+
+
 
 
 

@@ -4,7 +4,6 @@ import Ui.console.asciitext as asciitext
 import Ui.console.textdisplay as textdisplay
 import configuration.getconfig as getconfig
 import getopt, sys
- 
 # Remove 1st argument from the list of command line arguments
 argumentList = sys.argv[1:]
 # Options
@@ -29,9 +28,7 @@ try:
             if(getconfig.get_bot_is_activate() == True):
                 response = textdisplay.display_bot_already_connect()
                 if (response == True):
-                    getconfig.set_bot_status("no")
-                    textdisplay.display_bot_disconnect()
-
+                    instagram_bot.disconnect_bot_from_account()
             else:
                 asciitext.display_connection()
                 instagram_bot.connect_account_to_instabot()
