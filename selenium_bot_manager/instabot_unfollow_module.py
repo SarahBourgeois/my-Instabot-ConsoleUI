@@ -23,3 +23,4 @@ def unfollow_from_list(driver, user_to_unfollow):
     time.sleep(2)
     confirm = driver.find_element(by=By.XPATH, value='/html/body/div[6]/div/div/div/div[3]/button[1]')
     confirm.click()
+    time.sleep(2)
