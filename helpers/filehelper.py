@@ -17,7 +17,8 @@ def readCsvFile():
 
 
 def registerData(follower):
-    file1 = open("followedPeople.txt","w")
+    print("register followed people")
+    file1 = open('followedPeople.txt','a') # a is to not override current content
     file1.write(follower + "\n")
     print("Stored successfully")
 
@@ -28,7 +29,12 @@ def delete_folder_contents():
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
 
-
+def get_file_content():
+    myfile = open("followedPeople.txt", "rt")
+    contents = myfile.read()         
+    myfile.close()      
+    content_list = contents.split('\n')            
+    return content_list                 
 
 
 

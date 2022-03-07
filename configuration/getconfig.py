@@ -35,6 +35,17 @@ def get_automatic_like_authorization():
     else:
         return False
 
+###########################
+# UNFOLLOW_SECTION CONFIG
+##########################
+
+def get_unfollow_module_authorization():
+    option = config.get('UNFOLLOW_SECTION', 'automatic_unfollow')
+    if(option == "yes"):
+        return True
+    else:
+        return False
+
 
 ###########################
 # BOT_STATUS CONFIG

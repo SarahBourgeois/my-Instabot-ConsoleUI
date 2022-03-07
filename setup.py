@@ -8,9 +8,9 @@ import getopt, sys
 # Remove 1st argument from the list of command line arguments
 argumentList = sys.argv[1:]
 # Options
-options = "hiac"
+options = "hiacu"
 # Long options
-long_options = ["instagram", "account", "help"]
+long_options = ["instagram", "account", "help", "unfollow"]
 
 asciitext.display_instabot_title()
 
@@ -44,6 +44,9 @@ try:
         if currentArgument in ("-a", "--account"):
             asciitext.display_account_info()
             launcher.get_account_information()
+        
+        if currentArgument in ("-u", "--unfollow"):
+            launcher.launch_unfollow_module()
              
 except getopt.error as err:
     print (str(err))

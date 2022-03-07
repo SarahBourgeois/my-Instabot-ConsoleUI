@@ -1,9 +1,9 @@
 import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 # bot module
-import bots.like_and_follow_bot as liker_follower_bot
+import bots.hybrid_bot as hybrid_bot
 import bots.account_bot as account_bot
-
+import bots.unfollow_bot as unfollow_bot
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
 import helpers.filehelper as helper
@@ -22,6 +22,12 @@ import time
 
 TIME_SLEEP = 2
 
+def return_session_driver():
+    session_id = getconfig.get_bot_session_id()
+    exectutor_url = getconfig.get_bot_url_executor()
+    return instabot_driver_service.create_driver_session(session_id,exectutor_url)
+
+# Connect the instabot to the user account
 def connect_account_to_instabot():
     try:
         print("begin to connect your account to the instabot")
@@ -30,7 +36,8 @@ def connect_account_to_instabot():
         account_bot.connect_account_to_instabot(driver)
     except Exception as e:
         print(e)
-   
+
+# disconnect the instabot from the user account
 def disconnect_bot_from_account():
     try:
         print("begin disconnect bot from your account...")
@@ -38,68 +45,35 @@ def disconnect_bot_from_account():
     except Exception as e:
         print(e)
 
+# get all account information
 def get_account_information():
     try:
-        session_id = getconfig.get_bot_session_id()
-        exectutor_url = getconfig.get_bot_url_executor()
-        print("get account_info is running...")
-        driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
+        print("Getting information about your account...")
+        driver = return_session_driver()
         account_bot.get_account_information(driver)
     except Exception as e:
         print(e)
 
-
+# MODULE LIKE_SECTION : launch the module for automatic like
 def launch_liker_module():
-    print("like_module is running...")
+    print("LIKE_MODULE is running...")
 
+# MODULE FOLLOWER_SECTION : launch the module to automatic follow
 def launch_follower_module():
-    print("follower_module is running")
+    print("FOLLOWER_MODULE is running...")
 
+# MODULE HYBRYD_SECTION : launch the module to automatic like and follow
 def launch_follower_and_liker_module():
-    print("Follower and liker module is running.")
-    session_id = getconfig.get_bot_session_id()
-    exectutor_url = getconfig.get_bot_url_executor()
-    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
-    liker_follower_bot.like_follow(driver)
+    print("HYBRID_MODULE is running.")
+    driver = return_session_driver()
+    hybrid_bot.like_follow(driver)
+
+# MODULE UNFOLLOW_SECTION : launch the module to unfollow followed people with the instabot
+def launch_unfollow_module():
+    print("UNFOLLOW_MODULE is running...")
+    driver = return_session_driver()
+    is_module_unfollow_activated = getconfig.get_unfollow_module_authorization()
+    if(is_module_unfollow_activated == True):
+        unfollow_bot.unfollow_people(driver)
 
 
-
-def launch_instagram_bot():
-    session_id = getconfig.get_bot_session_id()
-    exectutor_url = getconfig.get_bot_url_executor()
-    driver = instabot_driver_service.create_driver_session(session_id,exectutor_url)
-    first_open = True
-    # init service
-    time.sleep(4)
-    # search general element
-    searchBox = instagram_manager.select_search_box(driver)
-    # write text in search box
-    box = instagram_manager.write_and_push_text(driver, searchBox, 'beany_artworks')
-    time.sleep(4)
-    # open publication
-    instagram_manager.open_publication(driver)
-
-    for i in range(1):
-        # like publication 
-        if(getconfig.get_automatic_like_authorization() == True):
-            instagram_manager.like_publication(driver)
-            time.sleep(5)
-        else :
-           print("Automatic like is disable")
-        # check if you already follow
-        instagram_manager.is_already_follow(driver)
-        # follow 
-        instagram_manager.follow(driver)
-        time.sleep(5)
-
-        if(first_open == True):
-            instagram_manager.next_page(driver)
-        else:
-            instagram_manager.next_pageafter(driver)
-            
-        first_open = False
-    instagram_manager.close_publication_page(driver)
-    print("End of instabot work")
-  
-
-    
