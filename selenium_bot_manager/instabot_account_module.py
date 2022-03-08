@@ -1,6 +1,8 @@
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
+import Ui.console.pyInquirer_text as pyInquirer_text
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -15,11 +17,11 @@ def connect_user_to_instabot(driver):
         driver.find_element(by=By.XPATH, value ='/html/body/div[4]/div/div/button[1]').click()
         time.sleep(2)
         # login
-        login = textdisplay.ask_login()
+        login = pyInquirer_text.ask_login()
         user = driver.find_element_by_xpath("//input[@name='username']")
         user.send_keys(login)
         # password
-        password = textdisplay.ask_password()
+        password = pyInquirer_text.ask_password()
         password_input = driver.find_element_by_xpath("//input[@name='password']")
         password_input.send_keys(password)
         # click connect button

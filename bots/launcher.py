@@ -29,6 +29,10 @@ def return_session_driver():
 # Connect the instabot to the user account
 def connect_account_to_instabot():
     try:
+        bot_status = getconfig.get_bot_is_activate()
+        if(bot_status == True):
+            print("Your account is already link to Instabot")
+            return
         driver = instabot_driver_service.init_bot_connection_service()
         time.sleep(2)
         print("\n \n")
