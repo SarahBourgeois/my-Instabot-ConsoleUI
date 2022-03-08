@@ -1,14 +1,12 @@
-# Selenium module
+# internal
 import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import selenium_bot_manager.instabot_follow_module as follow_module
 import selenium_bot_manager.instabot_like_module as like_module
-
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
 import helpers.filehelper as helper
-from apscheduler.schedulers.blocking import BlockingScheduler
-import time
+# Selenium module
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -17,6 +15,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+# sceduler : 
+from apscheduler.schedulers.blocking import BlockingScheduler
+# system
 import time
 
 def like_follow(driver):

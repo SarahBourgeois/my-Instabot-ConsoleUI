@@ -1,8 +1,9 @@
+# internal
 import selenium_bot_manager.instagram_manager as common_module
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
-
+# selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -10,6 +11,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options
+# system
 import time
 import re
 

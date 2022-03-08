@@ -1,10 +1,13 @@
+# pyInquirer
 from __future__ import print_function, unicode_literals
-import Ui.console.constants.launcher_arg as launcher_arg
 from PyInquirer import prompt, print_json, Separator
 from pprint import pprint
 from prompt_toolkit.validation import Validator, ValidationError
 from examples import custom_style_3
+# colorama
 from colorama import Fore, Back, Style
+# internal
+import Ui.console.constants.launcher_arg as launcher_arg
 
 
 def launch_instabot_menu():

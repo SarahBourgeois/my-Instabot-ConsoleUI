@@ -1,6 +1,7 @@
 
 from __future__ import print_function, unicode_literals
 
+# internal
 import bots.launcher as launcher
 import Ui.console.asciitext as asciitext
 import Ui.console.textdisplay as textdisplay

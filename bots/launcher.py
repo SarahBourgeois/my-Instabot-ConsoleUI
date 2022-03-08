@@ -1,6 +1,6 @@
+# internal
 import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
-# bot module
 import bots.hybrid_bot as hybrid_bot
 import bots.account_bot as account_bot
 import bots.unfollow_bot as unfollow_bot
@@ -16,8 +16,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# others
+# scheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
+# system
 import time
 
 
