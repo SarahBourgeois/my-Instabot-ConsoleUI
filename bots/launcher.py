@@ -20,7 +20,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from apscheduler.schedulers.blocking import BlockingScheduler
 import time
 
-TIME_SLEEP = 2
 
 def return_session_driver():
     session_id = getconfig.get_bot_session_id()
@@ -30,9 +29,9 @@ def return_session_driver():
 # Connect the instabot to the user account
 def connect_account_to_instabot():
     try:
-        print("begin to connect your account to the instabot")
         driver = instabot_driver_service.init_bot_connection_service()
         time.sleep(2)
+        print("\n \n")
         account_bot.connect_account_to_instabot(driver)
     except Exception as e:
         print(e)

@@ -1,53 +1,39 @@
 
-import bots.instagram_bot as instagram_bot
+from __future__ import print_function, unicode_literals
+
 import bots.launcher as launcher
 import Ui.console.asciitext as asciitext
 import Ui.console.textdisplay as textdisplay
-import configuration.getconfig as getconfig
-import getopt, sys
-# Remove 1st argument from the list of command line arguments
-argumentList = sys.argv[1:]
-# Options
-options = "hiacu"
-# Long options
-long_options = ["instagram", "account", "help", "unfollow"]
+import Ui.constants.launcher_arg as arg
+import Ui.console.pyInquirer_text as pyInquirer_text
 
 asciitext.display_instabot_title()
 
-try:
-    # Parsing argument
-    arguments, values = getopt.getopt(argumentList, options, long_options)
-     
-    # checking each argument
-    for currentArgument, currentValue in arguments:
+
+def setup_instabot():       
+    choice = pyInquirer_text.launch_instabot_menu()
+    print(choice)
+    switcher_action(choice)
+
+
+def switcher_action(choice):
+    if(choice ==  arg.CONNECT_INSTABOT_ACCOUNT):
+        launcher.connect_account_to_instabot()
+    if(choice == arg.DISCONNECT_INSTABOT_ACCOUNT):
+        launcher.disconnect_bot_from_account()
+    if(choice == arg.LAUNCH_LIKE_MODULE):
+        launcher.launch_liker_module()
+    if(choice == arg.LAUNCH_FOLLOWER_MODULE):
+        launcher.launch_follower_module()
+    if(choice == arg.LAUNCH_HYBRID_MODULE):
+        launcher.launch_follower_and_liker_module()
+    if(choice == arg.LAUNCH_UNFOLLOW_MODULE):
+        launcher.launch_unfollow_module()
+    if(choice == arg.LAUNCH_MUTE_MODULE):
+        print("todo")
+    if(choice == arg.OPEN_CONFIG_HELPER):
+        textdisplay.display_help_args()
  
-        if currentArgument in ("-h", "--help"):
-            asciitext.display_helper()
-            textdisplay.display_help_args()
-        
-        if currentArgument in ("-c", "--connect"):
-            if(getconfig.get_bot_is_activate() == True):
-                response = textdisplay.display_bot_already_connect()
-                if (response == True):
-                    launcher.disconnect_bot_from_account()
-            else:
-                asciitext.display_connection()
-                launcher.connect_account_to_instabot()
-                getconfig.set_bot_status("yes")
-             
-        if currentArgument in ("-i", "--instagram"):
-            if(getconfig.get_bot_is_activate() == True):
-                launcher.launch_follower_and_liker_module()
-            else:
-                textdisplay.display_activation_mandatory()
-        
-        if currentArgument in ("-a", "--account"):
-            asciitext.display_account_info()
-            launcher.get_account_information()
-        
-        if currentArgument in ("-u", "--unfollow"):
-            launcher.launch_unfollow_module()
-             
-except getopt.error as err:
-    print (str(err))
+
+setup_instabot()
 

@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 # and reuse the instance until we don't close thanks
 # to a sessionId and the executor Url 
 
-silencer = False
+silencer = True
 driver = webdriver
 
 def init_bot_connection_service():
