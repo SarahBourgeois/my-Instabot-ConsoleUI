@@ -4,7 +4,7 @@ import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import selenium_bot_manager.instabot_follow_module as follow_module
 import selenium_bot_manager.instabot_like_module as like_module
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
+import Ui.console.text_display.simpleprint as simpleprint
 import helpers.filehelper as helper
 # Selenium module
 from selenium import webdriver

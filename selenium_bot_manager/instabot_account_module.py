@@ -1,8 +1,8 @@
 # in te
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
-import Ui.console.pyInquirer_text as pyInquirer_text
+import Ui.console.text_display.simpleprint as simpleprint
+import Ui.console.text_display.pyInquirer as pyInquirer_text
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By

@@ -3,7 +3,7 @@ import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import selenium_bot_manager.instabot_account_module as account_module
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
+import Ui.console.text_display.simpleprint as simpleprint
 import Ui.console.animations.progress_bar as progress_bar
 import helpers.filehelper as helper
 # selenium
@@ -25,18 +25,18 @@ TIME_SLEEP = 2
 def connect_account_to_instabot(driver):
     try:
         account_module.connect_user_to_instabot(driver)
-        textdisplay.display_connection_done()
+        simpleprint.display_connection_done()
         getconfig.set_bot_status("yes")
         time.sleep(5)
     except Exception as e:
-        textdisplay.error_login_account
+        simpleprint.error_login_account
         getconfig.set_bot_status("no")
 
 def disconnect_bot_from_account():
     try:
         response = helper.delete_folder_contents()
         getconfig.set_bot_status("no")
-        textdisplay.display_bot_disconnect()
+        simpleprint.display_bot_disconnect()
         time.sleep(5)
     except Exception as e:
         print(e)
@@ -50,7 +50,7 @@ def get_account_information(driver):
         publication_number = account_module.get_number_publications(driver)
         follower_number = account_module.get_number_followers(driver)
         subscription_number = account_module.get_number_subscriptions(driver)
-        textdisplay.display_account_information(publication_number, follower_number, subscription_number)
+        simpleprint.display_account_information(publication_number, follower_number, subscription_number)
         instagram_manager.go_home(driver)
     except Exception as e:
         print(e)

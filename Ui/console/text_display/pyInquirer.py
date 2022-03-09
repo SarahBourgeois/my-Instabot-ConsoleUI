@@ -8,10 +8,33 @@ from examples import custom_style_3
 from colorama import Fore, Back, Style
 # internal
 import Ui.console.constants.launcher_arg as launcher_arg
+import configuration.getconfig as getconfig
+
+
+def display_activate_bot():
+    print("Current Instabot status :")
+    print(Fore.RED, "INACTIVE")
+    print("\n")
+    print(Fore.WHITE)
+    questions = [
+    {
+        'type': 'list',
+        'name': 'choice',
+        'message': 'Action : ',
+        'choices': [
+                    Separator("\n"),
+                    Separator("======== " + launcher_arg.SEPARATOR_CONNECTION +' ======== \n'),
+                    launcher_arg.CONNECT_INSTABOT_ACCOUNT
+        ]
+        },
+    ]
+    answers = prompt(questions, style=custom_style_3)
+    return answers.get('choice')
 
 
 def launch_instabot_menu():
-    print(Fore.CYAN, '   Welcome to Instabot !')
+    print("Current Instabot status :")
+    print(Fore.GREEN, "ACTIVE")
     print(Fore.WHITE)
     questions = [
         {
@@ -20,12 +43,7 @@ def launch_instabot_menu():
             'message': 'Action : ',
             'choices': [
                         Separator("\n"),
-                        Separator("======== " + launcher_arg.SEPARATOR_CONNECTION +' ======== \n'),
-                        launcher_arg.CONNECT_INSTABOT_ACCOUNT,
-                        launcher_arg.DISCONNECT_INSTABOT_ACCOUNT, 
-
                         Separator("======== " + launcher_arg.SEPARATOR_MODULES + " ======== \n"),
-
                         launcher_arg.LAUNCH_LIKE_MODULE,
                         launcher_arg.LAUNCH_FOLLOWER_MODULE,
                         launcher_arg.LAUNCH_HYBRID_MODULE,
@@ -33,36 +51,15 @@ def launch_instabot_menu():
                         launcher_arg.LAUNCH_MUTE_MODULE,
 
                         Separator("======== " +launcher_arg.SEPARATOR_CONFIG_HELPER + " ======== \n"),
-
-                        launcher_arg.OPEN_CONFIG_HELPER],
+                        launcher_arg.OPEN_CONFIG_HELPER,
+                        
+                        Separator("======== " + launcher_arg.SEPARATOR_DISCONNECT +' ======== \n'),
+                        launcher_arg.DISCONNECT_INSTABOT_ACCOUNT
+                        ],
         },
     ]
-
     answers = prompt(questions, style=custom_style_3)
     return answers.get('choice')
-
-
-def display_bot_already_connect():
-    print('\n')
-    print(Fore.RED + " - - - - The InstaBot is already connect to your account. - - - - ")
-    print(Fore.WHITE)
-
-    questions = [
-    {
-        'type': 'list',
-        'name': 'response',
-        'message': 'Do you really want to remove the instabot from your account ?',
-        'choices': ['Yes', 'No'],
-        'filter': lambda val: val.lower()
-    },
-]
-    answer = prompt(questions, style=custom_style_3)
-    response = answer.get('response')
-    if(response == "yes"):
-        return True
-    else:
-        return False
-
 
 def ask_password():
     print("\n")

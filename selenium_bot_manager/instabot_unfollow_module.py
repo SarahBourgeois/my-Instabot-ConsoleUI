@@ -1,7 +1,7 @@
 # internal
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
+import Ui.console.text_display.simpleprint as simpleprint
 import selenium_bot_manager.instagram_manager as common_module
 # selenium
 from selenium import webdriver

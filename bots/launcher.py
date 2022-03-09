@@ -5,8 +5,8 @@ import bots.hybrid_bot as hybrid_bot
 import bots.account_bot as account_bot
 import bots.unfollow_bot as unfollow_bot
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
-import Ui.console.pyInquirer_text as pyInquirer_text
+import Ui.console.text_display.simpleprint as simpleprint
+import Ui.console.text_display.pyInquirer as pyInquirer_text
 import Ui.console.animations.show_spinner as show_spinner
 import helpers.filehelper as helper
 # selenium
@@ -32,13 +32,6 @@ def return_session_driver():
 # Connect the instabot to the user account
 def connect_account_to_instabot():
     try:
-        bot_status = getconfig.get_bot_is_activate()
-        if(bot_status == True):
-            print("already connect")
-            time.sleep(5)
-            return
-            #response = pyInquirer_text.display_bot_already_connect()
-
         driver = instabot_driver_service.init_bot_connection_service()
         time.sleep(2)
         print("\n")

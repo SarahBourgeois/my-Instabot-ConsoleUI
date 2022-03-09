@@ -1,7 +1,7 @@
 # internal
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
+import Ui.console.text_display.simpleprint as simpleprint
 # selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By

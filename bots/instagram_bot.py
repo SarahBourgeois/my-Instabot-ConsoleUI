@@ -1,7 +1,7 @@
 import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import configuration.getconfig as getconfig
-import Ui.console.textdisplay as textdisplay
+import Ui.console.text_display.simpleprint as simpleprint
 import helpers.filehelper as helper
 from apscheduler.schedulers.blocking import BlockingScheduler
 import time
@@ -23,7 +23,7 @@ def connect_account_to_instabot():
         driver = instabot_driver_service.init_bot_connection_service()
         time.sleep(2)
         instagram_manager.connect_user(driver)
-        textdisplay.display_connection_done()
+        simpleprint.display_connection_done()
     except Exception as e:
         print(e)
         
@@ -33,7 +33,7 @@ def disconnect_bot_from_account():
         time.sleep(2)
         response = helper.delete_folder_contents()
         getconfig.set_bot_status("no")
-        textdisplay.display_bot_disconnect()
+        simpleprint.display_bot_disconnect()
     except Exception as e:
         print(e)
     finally:
@@ -49,7 +49,7 @@ def get_account_information():
         publication_number = instagram_manager.get_number_publications(driver)
         follower_number = instagram_manager.get_number_followers(driver)
         subscription_number = instagram_manager.get_number_subscriptions(driver)
-        textdisplay.display_account_information(publication_number, follower_number, subscription_number)
+        simpleprint.display_account_information(publication_number, follower_number, subscription_number)
     except Exception as e:
         print(e)
 
