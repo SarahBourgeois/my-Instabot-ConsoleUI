@@ -6,6 +6,8 @@ import bots.account_bot as account_bot
 import bots.unfollow_bot as unfollow_bot
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
+import Ui.console.pyInquirer_text as pyInquirer_text
+import Ui.console.animations.show_spinner as show_spinner
 import helpers.filehelper as helper
 # selenium
 from selenium import webdriver
@@ -32,11 +34,14 @@ def connect_account_to_instabot():
     try:
         bot_status = getconfig.get_bot_is_activate()
         if(bot_status == True):
-            print("Your account is already link to Instabot")
+            print("already connect")
+            time.sleep(5)
             return
+            #response = pyInquirer_text.display_bot_already_connect()
+
         driver = instabot_driver_service.init_bot_connection_service()
         time.sleep(2)
-        print("\n \n")
+        print("\n")
         account_bot.connect_account_to_instabot(driver)
     except Exception as e:
         print(e)
@@ -44,7 +49,8 @@ def connect_account_to_instabot():
 # disconnect the instabot from the user account
 def disconnect_bot_from_account():
     try:
-        print("begin disconnect bot from your account...")
+        print("\n")
+        show_spinner.launch("begin disconnect bot from your account...")
         account_bot.disconnect_bot_from_account()
     except Exception as e:
         print(e)
@@ -65,6 +71,7 @@ def launch_liker_module():
 # MODULE FOLLOWER_SECTION : launch the module to automatic follow
 def launch_follower_module():
     print("FOLLOWER_MODULE is running...")
+    time.sleep(5)
 
 # MODULE HYBRYD_SECTION : launch the module to automatic like and follow
 def launch_follower_and_liker_module():

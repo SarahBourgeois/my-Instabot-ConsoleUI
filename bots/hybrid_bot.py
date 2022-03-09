@@ -25,11 +25,11 @@ def like_follow(driver):
     time.sleep(4)
     # open profile 
     searchBox = instagram_manager.select_search_box(driver)
-    box = instagram_manager.write_and_push_text(driver, searchBox, '#3dprinter')
+    box = instagram_manager.write_and_push_text(driver, searchBox, '#imprimante3d')
     time.sleep(4)
     # open publication
     instagram_manager.open_publication(driver)
-
+    time.sleep(2)
     for i in range(2):
         # like publication 
         if(getconfig.get_automatic_like_authorization() == True):

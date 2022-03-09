@@ -37,7 +37,16 @@ def get_file_content():
     content_list = contents.split('\n')            
     return content_list                 
 
+def delete_user(user):
+    a_file = open("followedPeople.txt", "r")
+    lines = a_file.readlines()
+    a_file.close()
+    new_file = open("followedPeople.txt", "w")
+    for line in lines:
+        if line.strip("\n") != user:
+            new_file.write(line)
 
+    new_file.close()
 
 
 

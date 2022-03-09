@@ -4,6 +4,7 @@ import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import selenium_bot_manager.instabot_account_module as account_module
 import configuration.getconfig as getconfig
 import Ui.console.textdisplay as textdisplay
+import Ui.console.animations.progress_bar as progress_bar
 import helpers.filehelper as helper
 # selenium
 from selenium import webdriver
@@ -26,8 +27,9 @@ def connect_account_to_instabot(driver):
         account_module.connect_user_to_instabot(driver)
         textdisplay.display_connection_done()
         getconfig.set_bot_status("yes")
+        time.sleep(5)
     except Exception as e:
-        print(e)
+        textdisplay.error_login_account
         getconfig.set_bot_status("no")
 
 def disconnect_bot_from_account():
@@ -35,6 +37,7 @@ def disconnect_bot_from_account():
         response = helper.delete_folder_contents()
         getconfig.set_bot_status("no")
         textdisplay.display_bot_disconnect()
+        time.sleep(5)
     except Exception as e:
         print(e)
         getconfig.set_bot_status("yes")

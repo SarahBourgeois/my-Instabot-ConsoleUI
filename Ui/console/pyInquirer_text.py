@@ -41,7 +41,9 @@ def launch_instabot_menu():
     answers = prompt(questions, style=custom_style_3)
     return answers.get('choice')
 
+
 def display_bot_already_connect():
+    print('\n')
     print(Fore.RED + " - - - - The InstaBot is already connect to your account. - - - - ")
     print(Fore.WHITE)
 
