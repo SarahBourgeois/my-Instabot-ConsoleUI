@@ -35,6 +35,7 @@ def connect_account_to_instabot(driver):
 def disconnect_bot_from_account():
     try:
         response = helper.delete_folder_contents()
+        process.kill_webriver_task()
         getconfig.set_bot_status("no")
         simpleprint.display_bot_disconnect()
         time.sleep(5)

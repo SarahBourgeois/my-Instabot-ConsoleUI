@@ -10,8 +10,6 @@ import Ui.console.text_display.pyInquirer as pyInquirer_text
 import configuration.getconfig as getconfig
 import Ui.console.config_ui.configure_instabot as configure_instabot
 
-
-
 def setup_instabot(): 
     choice = "" 
     printascii.display_instabot_title()

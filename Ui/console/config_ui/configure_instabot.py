@@ -9,10 +9,6 @@ from colorama import Fore, Back, Style
 # internal
 import Ui.console.text_display.asciitext as asciitext
 
-
-
-
-
 def launch():
     print("\n")
     print("\n")
@@ -29,39 +25,7 @@ def display_readme_helper():
     print("Please open the documentation file :" + Fore.LIGHTYELLOW_EX, "wwww.instabot.com")
     print("\n")
     print("\n")
+    print(Fore.WHITE)
 
 def manage_options():
-    questions = [
-    {
-        'type': 'expand',
-        'message': 'Conflict on `file.js`: ',
-        'name': 'overwrite',
-        'default': 'a',
-        'choices': [
-            {
-                'key': 'y',
-                'name': 'Overwrite',
-                'value': 'overwrite'
-            },
-            {
-                'key': 'a',
-                'name': 'Overwrite this one and all next',
-                'value': 'overwrite_all'
-            },
-            {
-                'key': 'd',
-                'name': 'Show diff',
-                'value': 'diff'
-            },
-            Separator(),
-            {
-                'key': 'x',
-                'name': 'Abort',
-                'value': 'abort'
-            }
-        ]
-    }
-]
-
- 
-    result = prompt(questions)
+   print("ok")

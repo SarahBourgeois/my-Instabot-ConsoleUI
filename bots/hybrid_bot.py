@@ -25,12 +25,12 @@ def like_follow(driver):
     time.sleep(4)
     # open profile 
     searchBox = instagram_manager.select_search_box(driver)
-    box = instagram_manager.write_and_push_text(driver, searchBox, '#imprimante3d')
+    box = instagram_manager.write_and_push_text(driver, searchBox, '#followforfollow')
     time.sleep(4)
     # open publication
     instagram_manager.open_publication(driver)
     time.sleep(2)
-    for i in range(2):
+    for i in range(10):
         # like publication 
         if(getconfig.get_automatic_like_authorization() == True):
             like_module.like_publication(driver)
@@ -48,10 +48,11 @@ def like_follow(driver):
 
         if(first_open == True):
             instagram_manager.next_page(driver)
-        else:
+        if(first_open == False):
             instagram_manager.next_pageafter(driver)
+        first_open = False
+
             
-    first_open = False
     time.sleep(2)
     instagram_manager.close_publication_page(driver)
     time.sleep(2)
