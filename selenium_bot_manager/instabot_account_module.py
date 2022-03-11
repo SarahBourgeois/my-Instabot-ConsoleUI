@@ -29,6 +29,7 @@ def connect_user_to_instabot(driver):
         password_input.send_keys(password)
         # click connect button
         driver.find_element(by=By.XPATH, value='//*[@id="loginForm"]/div/div[3]/button').click()
+        simpleprint.display_processing()
         time.sleep(4)
         # click register login/pwd 
         registelogin_input = driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/div/div/section/div/button')

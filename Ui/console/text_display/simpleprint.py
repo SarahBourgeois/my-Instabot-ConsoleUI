@@ -17,13 +17,17 @@ def display_connection_done():
 def display_connection_error():
     print(Fore.RED, "There is a problem to connect your account. Verify your login/password and retry.")
     print(Fore.WHITE)
-    
+
 def display_bot_disconnect():
     print("\n")
     print(Fore.GREEN, "Instabot is correctly remove from your account.")
     print("\n")
     print(Fore.WHITE)
 
+
+def display_processing():
+    print("\n")
+    print("Processing ...")
 
 def display_account_information(publication_number, follower_number, subscription_number):
     print("------------------------------------")

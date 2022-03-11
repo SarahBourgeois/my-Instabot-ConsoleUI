@@ -14,7 +14,8 @@ def unfollow_people(driver):
     content = helper.get_file_content()
     for user_to_unfollow in content:
         if(user_to_unfollow != ''):
-            unfollow_module.unfollow_from_list(driver, user_to_unfollow)
+            response =  unfollow_module.unfollow_from_list(driver, user_to_unfollow)
+            if(response == True):
             helper.delete_user(user_to_unfollow)
             common_module.go_home(driver)
 

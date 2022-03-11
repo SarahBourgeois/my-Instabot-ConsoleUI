@@ -28,9 +28,9 @@ def connect_account_to_instabot(driver):
     response = ''
     try:
         response =  account_module.connect_user_to_instabot(driver)
+        simpleprint.display_processing()
         if (response == True):
             getconfig.set_bot_status("yes")
-            time.sleep(5)
             simpleprint.display_connection_done()
 
         if(response == False):

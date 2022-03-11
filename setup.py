@@ -58,7 +58,6 @@ def switcher_action(choice):
     if(choice == arg.OPEN_CONFIG_HELPER):
         configure_instabot.launch()
  
-#terminal.resize_console()
 setup_instabot()
 
 
