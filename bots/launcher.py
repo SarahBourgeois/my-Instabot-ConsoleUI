@@ -31,13 +31,10 @@ def return_session_driver():
 
 # Connect the instabot to the user account
 def connect_account_to_instabot():
-    try:
-        driver = instabot_driver_service.init_bot_connection_service()
-        time.sleep(2)
-        print("\n")
-        account_bot.connect_account_to_instabot(driver)
-    except Exception as e:
-        print(e)
+    driver = instabot_driver_service.init_bot_connection_service()
+    time.sleep(2)
+    print("\n")
+    account_bot.connect_account_to_instabot(driver)
 
 # disconnect the instabot from the user account
 def disconnect_bot_from_account():

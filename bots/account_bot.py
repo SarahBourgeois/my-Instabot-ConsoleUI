@@ -3,9 +3,12 @@ import selenium_bot_manager.instagram_manager as instagram_manager
 import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import selenium_bot_manager.instabot_account_module as account_module
 import configuration.getconfig as getconfig
+import Ui.console.text_display.pyInquirer as pyInquirer
 import Ui.console.text_display.simpleprint as simpleprint
 import Ui.console.animations.progress_bar as progress_bar
+import Ui.console.constants.launcher_arg as launcher_arg
 import helpers.filehelper as helper
+import commands.process as process
 # selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -21,16 +24,27 @@ import time
 
 TIME_SLEEP = 2
 
-
 def connect_account_to_instabot(driver):
+    response = ''
     try:
-        account_module.connect_user_to_instabot(driver)
-        simpleprint.display_connection_done()
-        getconfig.set_bot_status("yes")
-        time.sleep(5)
+        response =  account_module.connect_user_to_instabot(driver)
+        if (response == True):
+            getconfig.set_bot_status("yes")
+            time.sleep(5)
+            simpleprint.display_connection_done()
+
+        if(response == False):
+            simpleprint.display_connection_error()
+            getconfig.set_bot_status("no")
+            process.kill_webriver_task()
+            helper.delete_folder_contents()
+            answer = pyInquirer.return_to_menu()
+            if(answer == launcher_arg.RETURN_BACK):
+                answer = pyInquirer.display_activate_bot()
+
+        time.sleep(8)
     except Exception as e:
-        simpleprint.error_login_account
-        getconfig.set_bot_status("no")
+        print(e)
 
 def disconnect_bot_from_account():
     try:

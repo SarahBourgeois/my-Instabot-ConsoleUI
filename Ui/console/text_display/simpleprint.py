@@ -13,7 +13,11 @@ def display_connection_done():
     print("\n")
     print(Fore.GREEN,"Congratulations. Your account is now connect to the InstaBot !")
     print(Fore.WHITE)
- 
+
+def display_connection_error():
+    print(Fore.RED, "There is a problem to connect your account. Verify your login/password and retry.")
+    print(Fore.WHITE)
+    
 def display_bot_disconnect():
     print("\n")
     print(Fore.GREEN, "Instabot is correctly remove from your account.")

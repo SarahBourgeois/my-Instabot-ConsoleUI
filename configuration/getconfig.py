@@ -16,12 +16,16 @@ def read_config():
 
 # get the login of the user
 def get_login():
-    return config.get('ACCOUNT', 'login')
+    return config.get('BOT_STATUS', 'connected_account')
 
 # password must be renseign
 def get_password():
     return config.get('ACCOUNT', 'password')
 
+def set_login(login):
+    config.set('BOT_STATUS', 'connected_account', login)    
+    # save the file
+    write_config()
 
 ###########################
 # LIKE_SECTION CONFIG

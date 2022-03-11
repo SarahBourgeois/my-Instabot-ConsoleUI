@@ -1,5 +1,6 @@
 
 from __future__ import print_function, unicode_literals
+import os
 
 # internal
 import bots.launcher as launcher
@@ -9,10 +10,12 @@ import Ui.console.constants.launcher_arg as arg
 import Ui.console.text_display.pyInquirer as pyInquirer_text
 import configuration.getconfig as getconfig
 import Ui.console.config_ui.configure_instabot as configure_instabot
+import commands.terminal as terminal
 
 def setup_instabot(): 
     choice = "" 
     printascii.display_instabot_title()
+
     if(getconfig.get_bot_is_activate() == False):
         choice = pyInquirer_text.display_activate_bot()
     else:
@@ -55,6 +58,7 @@ def switcher_action(choice):
     if(choice == arg.OPEN_CONFIG_HELPER):
         configure_instabot.launch()
  
-
+#terminal.resize_console()
 setup_instabot()
+
 

@@ -10,6 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+import configuration.getconfig as config
 import time
 
 def connect_user_to_instabot(driver):
@@ -21,6 +22,7 @@ def connect_user_to_instabot(driver):
         login = pyInquirer_text.ask_login()
         user = driver.find_element_by_xpath("//input[@name='username']")
         user.send_keys(login)
+        config.set_login(login)
         # password
         password = pyInquirer_text.ask_password()
         password_input = driver.find_element_by_xpath("//input[@name='password']")
@@ -32,8 +34,11 @@ def connect_user_to_instabot(driver):
         registelogin_input = driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/main/div/div/div/section/div/button')
         registelogin_input.click()
         time.sleep(5)
+        return True
     except Exception as e:
         print(e)
+        config.set_login('')
+        return False
         
 
 def get_number_publications(driver):

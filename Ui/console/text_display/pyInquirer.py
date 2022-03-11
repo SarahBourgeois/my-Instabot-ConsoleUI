@@ -36,6 +36,8 @@ def launch_instabot_menu():
     print("Current Instabot status :")
     print(Fore.GREEN, "ACTIVE")
     print(Fore.WHITE)
+    print("Account connected :  " + getconfig.get_login())
+    print("\n")
     questions = [
         {
             'type': 'list',
@@ -85,3 +87,17 @@ def ask_login():
     print("\n")
     username = prompt(questions)
     return username.get('username')
+
+def return_to_menu():
+    questions = [
+    {
+        'type': 'list',
+        'name': 'return',
+        'message': 'Action : ',
+        'choices': [
+                    launcher_arg.RETURN_BACK
+        ]
+        },
+    ]
+    answers = prompt(questions, style=custom_style_3)
+    return answers.get('return')
