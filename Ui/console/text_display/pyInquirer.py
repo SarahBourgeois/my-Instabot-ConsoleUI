@@ -8,6 +8,7 @@ from examples import custom_style_3
 from colorama import Fore, Back, Style
 # internal
 import Ui.console.constants.launcher_arg as launcher_arg
+import Ui.console.constants.module as module_const
 import configuration.getconfig as getconfig
 
 
@@ -62,6 +63,26 @@ def launch_instabot_menu():
     ]
     answers = prompt(questions, style=custom_style_3)
     return answers.get('choice')
+
+def choose_module_configure():
+    print(Fore.YELLOW, "CHOOSE A MODULE TO CONFIGURE : ", Fore.WHITE)
+    questions = [
+        {
+            'type': 'list',
+            'name': 'choice',
+            'message': 'Action : ',
+            'choices': [
+                        "\n",
+                        module_const.HYBRID_MODULE,
+                        module_const.LIKE_MODULE,
+                        module_const.FOLLOW_MODULE,
+                        module_const.UNFOLLOW_MODULE
+                        ],
+        },
+    ]
+    answers = prompt(questions, style=custom_style_3)
+    return answers.get('choice')
+ 
 
 def ask_password():
     print("\n")

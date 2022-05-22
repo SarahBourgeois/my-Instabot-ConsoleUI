@@ -2,7 +2,8 @@
 
 
 ###### Requirements with Version Specifiers ######
-PyInquirer == 1.0.3             
+PyInquirer == 1.0.3    
+InquirerPy == 0.3.3         
 configparser == 5.2.0            
 colorama == 0.4.4
 Selenium == 4.1.1

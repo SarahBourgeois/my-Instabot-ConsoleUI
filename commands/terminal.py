@@ -10,3 +10,6 @@ def resize_console():
     windowid,err=proc.communicate()
     proc=subprocess.Popen(shlex.split(resize_cmd.format(id=windowid)))
     proc.communicate()
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')

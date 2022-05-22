@@ -40,6 +40,24 @@ def get_automatic_like_authorization():
         return False
 
 ###########################
+# HYBRID_SECTION CONFIG
+##########################
+# check if hybrid module is authorize
+def automatic_hybrid_authorization(): 
+    option = config.get('HYBRID_SECTION', 'automatic_hybrid')
+    if(option == "yes"):
+        return True
+    else:
+        return False
+
+def set_hybrid_activation(hybrid_choice):
+    print(hybrid_choice[0])
+    choice_activation = str(hybrid_choice[0])
+    config.set('HYBRID_SECTION', 'automatic_hybrid',  hybrid_choice[0])
+    write_config()
+
+
+###########################
 # UNFOLLOW_SECTION CONFIG
 ##########################
 
