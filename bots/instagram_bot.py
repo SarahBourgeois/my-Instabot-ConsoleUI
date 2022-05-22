@@ -3,7 +3,6 @@ import selenium_bot_manager.instabot_driver_service as instabot_driver_service
 import configuration.getconfig as getconfig
 import Ui.console.text_display.simpleprint as simpleprint
 import helpers.filehelper as helper
-from apscheduler.schedulers.blocking import BlockingScheduler
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By

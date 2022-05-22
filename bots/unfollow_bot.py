@@ -6,7 +6,6 @@ import helpers.filehelper as helper
 import Ui.console.text_display.simpleprint as simpleprint
 import configuration.getconfig as getconfig
 # external other
-from apscheduler.schedulers.blocking import BlockingScheduler
 import time
 
 def unfollow_people(driver):
