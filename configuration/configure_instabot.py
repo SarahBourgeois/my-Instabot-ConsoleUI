@@ -10,7 +10,7 @@ from PyInquirer import prompt, Separator
 from colorama import Fore, Back, Style
 # internal
 import Ui.console.text_display.asciitext as asciitext
-import Ui.console.text_display.pyInquirer as pyInquirer
+import Ui.console.text_display.config.pyInquirer_configuration as ui_configuration
 import configuration.getconfig as getconfig
 import commands.terminal as terminal_command
 import Ui.console.constants.module as module_const
@@ -25,8 +25,11 @@ def launch_configuration():
     asciitext.display_configuration()
     print("\n")
     display_readme_helper()
-    module_choice = pyInquirer.choose_module_configure()
+    module_choice = ui_configuration.choose_module_configure()
     manage_options(module_choice)
+
+
+
 
 def display_readme_helper():
     print(Fore.LIGHTMAGENTA_EX)
@@ -48,23 +51,12 @@ def bot_status():
     print("connected user : " , Fore.LIGHTMAGENTA_EX, getconfig.get_login())
     print("\n")
 
-def hybrid_module():
-    checked  = ""
-    hybrid = ""
-    automatic_hybrid = getconfig.automatic_hybrid_authorization()
-    if (automatic_hybrid == True):
-        hybrid = "no"
-        checked = "yes"
-    else:
-        hybrid = "yes"
-        checked = "no"
-     
-    choice = pyInquirer.hybrid_config(checked, hybrid)
+def module_activation_speed():     
+    choice = ui_configuration.module_activation_speed()
     # register all options
     getconfig.set_module_activation(choice, module_const.HYBRID_MODULE)
     getconfig.set_module_speed(choice, module_const.HYBRID_MODULE)
-   # launch()
-      
+
 def hashtag_choice(module):
     print(Fore.LIGHTMAGENTA_EX)
     print("=========================")
@@ -77,29 +69,31 @@ def hashtag_choice(module):
         print(Fore.WHITE, "you already have target hasthags : ")
         print(Fore.RED, exist_hashtag, Fore.WHITE)
         print("\n")
-        choice =  pyInquirer.hastags_choice_options()
+        choice =  ui_configuration.hastags_choice_options()
         if (choice == hashtag_const.HASHTAGS_ADD_NEW):
-            new_hashtag = pyInquirer.enter_hashtags()
+            new_hashtag = ui_configuration.enter_hashtags()
             hashtag = exist_hashtag + " " + new_hashtag
             getconfig.set_hashtag(hashtag, module)
             hashtag_choice(module_const.HYBRID_MODULE)
         if (choice == hashtag_const.HASHTAGS_FINISH_EXIT):
             print(Fore.GREEN, "This module configuration is finish !!", Fore.WHITE)
-            isContinue = pyInquirer.is_want_new_config()
+            isContinue = ui_configuration.is_want_new_config()
             print(isContinue)
             if(isContinue == "Yes"):
-                module_choice = pyInquirer.choose_module_configure()
+                module_choice = ui_configuration.choose_module_configure()
                 manage_options(module_choice)
             else:
                 return
 
     else:
-        pyInquirer.enter_hashtags()
+        ui_configuration.enter_hashtags()
         getconfig.set_hashtag(choice, module)
+
+
 
 def manage_options(choice):
     #terminal_command.clear()
     if(choice == module_const.HYBRID_MODULE):
-        hybrid_module()
+        module_activation_speed()
         hashtag_choice(module_const.HYBRID_MODULE)
 

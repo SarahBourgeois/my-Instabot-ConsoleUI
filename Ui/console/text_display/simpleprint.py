@@ -7,28 +7,30 @@ from colorama import Fore, Back, Style
 
 import json
 
-
-####### BOT DISCONNECTION ############
+# Connection is OK 
 def display_connection_done():
     print("\n")
     print(Fore.GREEN,"Congratulations. Your account is now connect to the InstaBot !")
     print(Fore.WHITE)
 
+# Connection Error 
 def display_connection_error():
     print(Fore.RED, "There is a problem to connect your account. Verify your login/password and retry.")
     print(Fore.WHITE)
 
+# Disconnect instabot OK
 def display_bot_disconnect():
     print("\n")
     print(Fore.GREEN, "Instabot is correctly remove from your account.")
     print("\n")
     print(Fore.WHITE)
 
-
+# Processing display
 def display_processing():
     print("\n")
     print("Processing ...")
 
+# Account Information
 def display_account_information(publication_number, follower_number, subscription_number):
     print("------------------------------------")
     print('\n')

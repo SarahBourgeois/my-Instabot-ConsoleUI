@@ -47,11 +47,7 @@ def open_publication(driver):
 
 def close_publication_page(driver):
     time.sleep(1)
-    driver.find_element(by=By.XPATH, value='/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/div').click()
-    time.sleep(1)
-    driver.find_element(by=By.XPATH, value='/html/body/div[7]/div/div/div/div/button[3]').click()
-
-
+    driver.find_element(by=By.XPATH, value='/html/body/div[6]/div[1]/button').click()
 
 def next_page(driver):
     next_page_input = driver.find_element(by=By.XPATH, value='/html/body/div[6]/div[2]/div/div/button')
@@ -62,7 +58,7 @@ def next_pageafter(driver):
     next_page_input = driver.find_element(by=By.XPATH, value=next_pageafter)
     next_page_input.send_keys(Keys.ENTER)
 
-def go_profile(driver):
+def go_profile(driver): 
     driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[6]/span/img').click()
     time.sleep(2)
     driver.find_element(by=By.XPATH, value='//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[6]/div[2]/div[2]/div[2]/a[1]').click()
