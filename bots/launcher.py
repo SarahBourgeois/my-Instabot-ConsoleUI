@@ -8,6 +8,7 @@ import configuration.getconfig as getconfig
 import Ui.console.text_display.simpleprint as simpleprint
 import Ui.console.text_display.pyInquirer as pyInquirer_text
 import Ui.console.animations.show_spinner as show_spinner
+import configuration.configure_instabot as configuration
 import helpers.filehelper as helper
 # selenium
 from selenium import webdriver
@@ -75,4 +76,7 @@ def launch_unfollow_module():
     if(is_module_unfollow_activated == True):
         unfollow_bot.unfollow_people(driver)
 
+# CONFIGURATION : Launch configuration
+def launch_configuration():
+    configuration.launch_configuration()
 

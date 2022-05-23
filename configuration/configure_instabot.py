@@ -18,7 +18,7 @@ import Ui.console.constants.hashtags_actions as hashtag_const
 # system
 import sys
 
-def launch():
+def launch_configuration():
     terminal_command.clear()
     print("\n")
     print("\n")
@@ -28,13 +28,11 @@ def launch():
     module_choice = pyInquirer.choose_module_configure()
     manage_options(module_choice)
 
-    
 def display_readme_helper():
     print(Fore.LIGHTMAGENTA_EX)
     print("If you never configure Instabot before, ")
     print("Please open the documentation page on :" + Fore.LIGHTYELLOW_EX, "wwww.my-instabot.com/documentation")
     print(Fore.WHITE)
-
 
 def bot_status():
     status = ""
@@ -60,42 +58,8 @@ def hybrid_module():
     else:
         hybrid = "yes"
         checked = "no"
-
-    print(Fore.LIGHTYELLOW_EX)
-    print("[HYBRID_SECTION]", Fore.WHITE)
-    questions = [ 
-            {
-                'type': 'checkbox',
-                'message': 'Select choice',
-                'name': 'is_active',
-                'choices': [ 
-                        Separator('==== hybrid mode is active  : ===='),
-                        {
-                            'name': str(checked),
-                            'checked': True
-                        },
-                        {
-                            'name': str(hybrid)
-                        },
-                        Separator('==== Speed ===='),
-                        {
-                            'name': 'medium',
-                            'checked': True
-                        },
-                        {
-                            'name': 'low'
-                        },
-                        {
-                            'name': 'fast'
-                        },
-            ],
-            'validate': lambda answer: 'You must choose at least one topping.' \
-            if len(answer) == 0 else True
-            }
-    ] 
-
-    answers = prompt(questions, style=custom_style_2)
-    choice = answers.get('is_active')
+     
+    choice = pyInquirer.hybrid_config(checked, hybrid)
     # register all options
     getconfig.set_module_activation(choice, module_const.HYBRID_MODULE)
     getconfig.set_module_speed(choice, module_const.HYBRID_MODULE)
@@ -112,6 +76,7 @@ def hashtag_choice(module):
         print("\n")
         print(Fore.WHITE, "you already have target hasthags : ")
         print(Fore.RED, exist_hashtag, Fore.WHITE)
+        print("\n")
         choice =  pyInquirer.hastags_choice_options()
         if (choice == hashtag_const.HASHTAGS_ADD_NEW):
             new_hashtag = pyInquirer.enter_hashtags()
@@ -121,12 +86,12 @@ def hashtag_choice(module):
         if (choice == hashtag_const.HASHTAGS_FINISH_EXIT):
             print(Fore.GREEN, "This module configuration is finish !!", Fore.WHITE)
             isContinue = pyInquirer.is_want_new_config()
+            print(isContinue)
             if(isContinue == "Yes"):
-                print("exit")
                 module_choice = pyInquirer.choose_module_configure()
                 manage_options(module_choice)
             else:
-                print("exit")
+                return
 
     else:
         pyInquirer.enter_hashtags()

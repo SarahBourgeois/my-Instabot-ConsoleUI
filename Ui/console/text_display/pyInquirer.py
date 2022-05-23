@@ -41,6 +41,45 @@ def display_activate_bot():
 # CONFIGURATION
 # ============================
 
+##### Hybrid config ######
+def hybrid_config(checked, hybrid):
+    print(Fore.LIGHTYELLOW_EX)
+    print("[HYBRID_SECTION]", Fore.WHITE)
+    questions = [ 
+            {
+                'type': 'checkbox',
+                'message': 'Select choice',
+                'name': 'is_active',
+                'choices': [ 
+                        Separator('==== hybrid mode is active  : ===='),
+                        {
+                            'name': str(checked),
+                            'checked': True
+                        },
+                        {
+                            'name': str(hybrid)
+                        },
+                        Separator('==== Speed ===='),
+                        {
+                            'name': 'medium',
+                            'checked': True
+                        },
+                        {
+                            'name': 'low'
+                        },
+                        {
+                            'name': 'fast'
+                        },
+            ],
+            'validate': lambda answer: 'You must choose at least one topping.' \
+            if len(answer) == 0 else True
+            }
+    ] 
+
+    answers = prompt(questions, style=custom_style_2)
+    return answers.get('is_active')
+
+
 ##### Want new config ######
 def is_want_new_config():
     print(Fore.YELLOW, "Do you want to configure another Module ? ", Fore.WHITE)
@@ -90,7 +129,7 @@ def hastags_choice_options():
                         "\n",
                         hashtag_cont.HASHTAGS_ADD_NEW,
                         hashtag_cont.HASHTAGS_REMOVE,
-                        hashtag_const.HASHTAGS_FINISH_EXIT
+                        hashtag_cont.HASHTAGS_FINISH_EXIT
                         ],
         },
     ]

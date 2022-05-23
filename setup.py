@@ -7,7 +7,7 @@ import Ui.console.text_display.simpleprint as simpleprint
 import Ui.console.constants.launcher_arg as arg
 import Ui.console.text_display.pyInquirer as pyInquirer_text
 import configuration.getconfig as getconfig
-import Ui.console.config_ui.configure_instabot as configure_instabot
+import configuration.configure_instabot as configuration
 import commands.terminal as terminal
 
 def setup_instabot(): 
@@ -54,6 +54,8 @@ def switcher_action(choice):
         setup_instabot()
 
     if(choice == arg.OPEN_CONFIG_HELPER):
-        configure_instabot.launch()
+        launcher.launch_configuration()
+        setup_instabot()
+
  
 setup_instabot()

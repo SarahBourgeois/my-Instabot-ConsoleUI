@@ -6,7 +6,7 @@ LAUNCH_FOLLOWER_MODULE =  '*  Launch the FOLLOWER_MODULE \n'
 LAUNCH_HYBRID_MODULE = '*  Launch the HYBRID_MODULE \n'
 LAUNCH_UNFOLLOW_MODULE = '*  Launch the UNFOLLOW_MODULE \n'
 LAUNCH_MUTE_MODULE =    '*  Launch the MUTE_MODULE \n'
-OPEN_CONFIG_HELPER =  '*  Open the helper to configure well Instabot \n'
+OPEN_CONFIG_HELPER =  '*  Configure your Instabot \n'
 RETURN_BACK = "Return back"
 
 SEPARATOR_CONNECTION =  'CONNECTION'
