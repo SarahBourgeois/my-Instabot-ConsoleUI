@@ -2,6 +2,7 @@ from configparser import ConfigParser
 from configparser import SafeConfigParser
 import os
 import selenium_bot_manager.instagram_manager as instagram_manager
+import Ui.console.constants.module as module_const
 
 def read_config():
     thisfolder = os.path.dirname(os.path.abspath(__file__))
@@ -40,7 +41,7 @@ def get_automatic_like_authorization():
         return False
 
 ###########################
-# HYBRID_SECTION CONFIG
+# HYBRID_MODULE
 ##########################
 # check if hybrid module is authorize
 def automatic_hybrid_authorization(): 
@@ -50,11 +51,35 @@ def automatic_hybrid_authorization():
     else:
         return False
 
-def set_hybrid_activation(hybrid_choice):
-    print(hybrid_choice[0])
-    choice_activation = str(hybrid_choice[0])
-    config.set('HYBRID_SECTION', 'automatic_hybrid',  hybrid_choice[0])
+
+###########################
+# COMMON
+##########################
+def get_hashtag(module):
+    if(module == module_const.HYBRID_MODULE):
+        return config.get('HYBRID_SECTION', 'hashtags')
+
+def set_module_activation(choice, module):
+    if(module == module_const.HYBRID_MODULE):
+        choice_activation = str(choice[0])
+        config.set('HYBRID_SECTION', 'automatic_hybrid', choice[0])
+    if(module == module_const.FOLLOW_MODULE):
+        choice_activation = str(choice[0])
+        config.set('FOLLOW_SECTION', 'automatic_follow', choice[0])
     write_config()
+
+def set_module_speed(choice, module):
+    if(module == module_const.HYBRID_MODULE):
+        choice_speed = str(choice[1])
+        config.set('HYBRID_SECTION', 'speed', choice[1])
+    write_config()
+
+def set_hashtag(choice, module):
+    if(module == module_const.HYBRID_MODULE):
+        config.set('HYBRID_SECTION', 'hashtags', choice)
+    write_config()
+
+
 
 
 ###########################

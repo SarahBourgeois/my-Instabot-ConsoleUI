@@ -3,10 +3,9 @@ from __future__ import print_function, unicode_literals
 from PyInquirer import prompt, print_json, Separator
 from pprint import pprint
 from prompt_toolkit.validation import Validator, ValidationError
-from examples import custom_style_3
+from examples import custom_style_3, custom_style_2
 from pprint import pprint
 from PyInquirer import prompt, Separator
-from examples import custom_style_2
 # colorama
 from colorama import Fore, Back, Style
 # internal
@@ -15,6 +14,9 @@ import Ui.console.text_display.pyInquirer as pyInquirer
 import configuration.getconfig as getconfig
 import commands.terminal as terminal_command
 import Ui.console.constants.module as module_const
+import Ui.console.constants.hashtags_actions as hashtag_const
+# system
+import sys
 
 def launch():
     terminal_command.clear()
@@ -24,7 +26,6 @@ def launch():
     print("\n")
     display_readme_helper()
     module_choice = pyInquirer.choose_module_configure()
-    print(module_choice)
     manage_options(module_choice)
 
     
@@ -94,26 +95,46 @@ def hybrid_module():
     ] 
 
     answers = prompt(questions, style=custom_style_2)
-    hybrid_choice = answers.get('is_active')
-    print(hybrid_choice)
-    getconfig.set_hybrid_activation(hybrid_choice)
+    choice = answers.get('is_active')
+    # register all options
+    getconfig.set_module_activation(choice, module_const.HYBRID_MODULE)
+    getconfig.set_module_speed(choice, module_const.HYBRID_MODULE)
    # launch()
       
-def hashtag_choice():
-    questions = [
+def hashtag_choice(module):
+    print(Fore.LIGHTMAGENTA_EX)
+    print("=========================")
+    print("Hashtags Configuration")
+    print("=========================")
 
-    {
-        'type': 'input',
-        'name': 'hashtag',
-        'message': 'Enter hashtag you want to target ? (separate by a space. example > #movie #bar #food',
-    },
-]
+    exist_hashtag = getconfig.get_hashtag(module)
+    if(exist_hashtag != ""):
+        print("\n")
+        print(Fore.WHITE, "you already have target hasthags : ")
+        print(Fore.RED, exist_hashtag, Fore.WHITE)
+        choice =  pyInquirer.hastags_choice_options()
+        if (choice == hashtag_const.HASHTAGS_ADD_NEW):
+            new_hashtag = pyInquirer.enter_hashtags()
+            hashtag = exist_hashtag + " " + new_hashtag
+            getconfig.set_hashtag(hashtag, module)
+            hashtag_choice(module_const.HYBRID_MODULE)
+        if (choice == hashtag_const.HASHTAGS_FINISH_EXIT):
+            print(Fore.GREEN, "This module configuration is finish !!", Fore.WHITE)
+            isContinue = pyInquirer.is_want_new_config()
+            if(isContinue == "Yes"):
+                print("exit")
+                module_choice = pyInquirer.choose_module_configure()
+                manage_options(module_choice)
+            else:
+                print("exit")
 
-    answers = prompt(questions, style=custom_style_2)
+    else:
+        pyInquirer.enter_hashtags()
+        getconfig.set_hashtag(choice, module)
 
 def manage_options(choice):
     #terminal_command.clear()
     if(choice == module_const.HYBRID_MODULE):
         hybrid_module()
-        hashtag_choice()
+        hashtag_choice(module_const.HYBRID_MODULE)
 

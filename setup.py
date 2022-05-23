@@ -1,7 +1,5 @@
-
 from __future__ import print_function, unicode_literals
 import os
-
 # internal
 import bots.launcher as launcher
 import Ui.console.text_display.asciitext as printascii
@@ -59,5 +57,3 @@ def switcher_action(choice):
         configure_instabot.launch()
  
 setup_instabot()
-
-
