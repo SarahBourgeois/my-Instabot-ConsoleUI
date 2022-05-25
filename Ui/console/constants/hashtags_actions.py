@@ -1,3 +1,3 @@
-HASHTAGS_ADD_NEW = "Add hashtags \n"
-HASHTAGS_REMOVE = "Remove Hashtags \n"
-HASHTAGS_FINISH_EXIT = "Do nothing / exit this config \n"
+HASHTAGS_ADD_NEW = "Ajoute des hashtags \n"
+HASHTAGS_REMOVE = "Supprime des Hashtags \n"
+HASHTAGS_FINISH_EXIT = "Retour \n"

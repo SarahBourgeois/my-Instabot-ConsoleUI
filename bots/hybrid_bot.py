@@ -23,7 +23,7 @@ def like_follow(driver):
     time.sleep(4)
     # open profile 
     searchBox = instagram_manager.select_search_box(driver)
-    box = instagram_manager.write_and_push_text(driver, searchBox, '#food')
+    box = instagram_manager.write_and_push_text(driver, searchBox, '#print3d')
     time.sleep(4)
     # open publication
     instagram_manager.open_publication(driver)

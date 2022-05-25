@@ -20,20 +20,20 @@ def module_activation_speed():
     hybrid = ""
     automatic_hybrid = getconfig.automatic_hybrid_authorization()
     if (automatic_hybrid == True):
-        hybrid = "no"
-        checked = "yes"
+        hybrid = "non"
+        checked = "oui"
     else:
-        hybrid = "yes"
-        checked = "no"
+        hybrid = "oui"
+        checked = "non"
     print(Fore.LIGHTYELLOW_EX)
     print("[HYBRID_SECTION]", Fore.WHITE)
     questions = [ 
             {
                 'type': 'checkbox',
-                'message': 'Select choice',
+                'message': 'Selectionne tes choix :',
                 'name': 'is_active',
                 'choices': [ 
-                        Separator('==== hybrid mode is active  : ===='),
+                        Separator('==== Activation du mode Hybride : ===='),
                         {
                             'name': str(checked),
                             'checked': True
@@ -43,17 +43,20 @@ def module_activation_speed():
                         },
                         Separator('==== Speed ===='),
                         {
-                            'name': 'medium',
+                            'name': 'Manuel'
+                        },
+                        {
+                            'name': 'Lent',
                             'checked': True
                         },
                         {
-                            'name': 'low'
+                            'name': 'Moyen'
                         },
                         {
-                            'name': 'fast'
+                            'name': 'Rapide'
                         },
             ],
-            'validate': lambda answer: 'You must choose at least one topping.' \
+            'validate': lambda answer: 'Tu dois faire au moins un choix.' \
             if len(answer) == 0 else True
             }
     ] 
@@ -64,7 +67,7 @@ def module_activation_speed():
 
 ##### Want new config ######
 def is_want_new_config():
-    print(Fore.YELLOW, "Do you want to configure another Module ? ", Fore.WHITE)
+    print(Fore.YELLOW, "Veux-tu configurer un autre module ? ", Fore.WHITE)
     questions = [
         {
             'type': 'list',
@@ -72,8 +75,8 @@ def is_want_new_config():
             'message': 'Action : ',
             'choices': [
                         "\n",
-                        "Yes",
-                        "No"
+                        "Oui",
+                        "Non"
                         ],
         },
     ]
@@ -82,7 +85,7 @@ def is_want_new_config():
 
 ##### Module choice #####
 def choose_module_configure():
-    print(Fore.YELLOW, "CHOOSE A MODULE TO CONFIGURE : ", Fore.WHITE)
+    print(Fore.YELLOW, "CHOISIS UN MODULE A CONFIGURER : ", Fore.WHITE)
     questions = [
         {
             'type': 'list',
@@ -123,7 +126,7 @@ def enter_hashtags():
         {
             'type': 'input',
             'name': 'hashtag',
-            'message': 'Enter hashtag you want to target ? (separate by a space. example > #movie #bar #food',
+            'message': 'Entre les Hashtags cibles (sépare les par des ESPACES. Exemple : #movie #bar #food',
         },
     ]
     answers = prompt(questions, style=custom_style_2)

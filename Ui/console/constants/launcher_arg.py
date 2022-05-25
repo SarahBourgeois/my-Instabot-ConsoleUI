@@ -1,16 +1,18 @@
-CONNECT_INSTABOT_ACCOUNT = '*  Connect Instabot to your account \n'
-DISCONNECT_INSTABOT_ACCOUNT = '* Disconnect Instabot from your account \n'
-LAUNCH_FOLLOWER_MODULEDISCONNECT_INSTABOT_ACCOUNT = '*  Disconnect the instabot from your account \n'
-LAUNCH_LIKE_MODULE =  '*  Launch the LIKE_MODULE \n'
-LAUNCH_FOLLOWER_MODULE =  '*  Launch the FOLLOWER_MODULE \n'
-LAUNCH_HYBRID_MODULE = '*  Launch the HYBRID_MODULE \n'
-LAUNCH_UNFOLLOW_MODULE = '*  Launch the UNFOLLOW_MODULE \n'
+CONNECT_INSTABOT_ACCOUNT = '*  Connecte ton Instabot à ton compte Instagram \n'
+DISCONNECT_INSTABOT_ACCOUNT = '* Déconnecte l\'Instabot de ton compte \n'
+LAUNCH_FOLLOWER_MODULEDISCONNECT_INSTABOT_ACCOUNT = '*  Déconnecte l\'Instabot de ton compte \n'
+LAUNCH_LIKE_MODULE =  '*  Lance le module : LIKE \n'
+LAUNCH_FOLLOWER_MODULE =  '*  Lance le module : FOLLOWER \n'
+LAUNCH_HYBRID_MODULE = '*  Lance le module : HYBRIDE \n'
+LAUNCH_UNFOLLOW_MODULE = '*  Lance le module : UNFOLLOW \n'
 LAUNCH_MUTE_MODULE =    '*  Launch the MUTE_MODULE \n'
-OPEN_CONFIG_HELPER =  '*  Configure your Instabot \n'
-RETURN_BACK = "Return back"
+LAUNCH_AUTOMATIC_MODULE = "* Lance les modules (automatique) \n"
+LAUNCH_MANUAL_MODULE = "* Lance les modules (manuel) \n"
+OPEN_CONFIG_HELPER =  '*  Configure ton Instabot \n'
+RETURN_BACK = "Retour"
 
-SEPARATOR_CONNECTION =  'CONNECTION'
-SEPARATOR_DISCONNECT =  'DISCONNECT BOT'
+SEPARATOR_CONNECTION =  'CONNEXION'
+SEPARATOR_DISCONNECT =  'DECONNECTION DU BOT'
 SEPARATOR_MODULES = 'MODULES'
-SEPARATOR_CONFIG_HELPER =  'CONFIGURATION HELPER'
+SEPARATOR_CONFIG_HELPER =  'AIDE A LA CONFIGURATION'
 

@@ -17,8 +17,7 @@ import configuration.getconfig as getconfig
 #  BOT ACTIVATION
 # ============================
 def display_activate_bot():
-    print("Current Instabot status :")
-    print(Fore.RED, "INACTIVE")
+    print("Statut actuel de ton Instabot : ", Fore.RED, "INACTIF")
     print("\n")
     print(Fore.WHITE)
     questions = [
@@ -58,57 +57,10 @@ def ask_login():
     {
         'type': 'input',
         'name': 'username',
-        'message': 'Enter your instagram username or mail',
+        'message': 'Entre ton pseudo Instagram ou ton email : ',
     }
 ] 
     print("\n")
     username = prompt(questions)
     return username.get('username')
 
-# =======================
-#   MENU
-# ========================
-def return_to_menu():
-    questions = [
-    {
-        'type': 'list',
-        'name': 'return',
-        'message': 'Action : ',
-        'choices': [
-                    launcher_arg.RETURN_BACK
-        ]
-        },
-    ]
-    answers = prompt(questions, style=custom_style_3)
-    return answers.get('return')
-
-def launch_instabot_menu():
-    print("Current Instabot status :")
-    print(Fore.GREEN, "ACTIVE")
-    print(Fore.WHITE)
-    print("Account connected :  " + getconfig.get_login())
-    print("\n")
-    questions = [
-        {
-            'type': 'list',
-            'name': 'choice',
-            'message': 'Action : ',
-            'choices': [
-                        Separator("\n"),
-                        Separator("======== " + launcher_arg.SEPARATOR_MODULES + " ======== \n"),
-                        launcher_arg.LAUNCH_LIKE_MODULE,
-                        launcher_arg.LAUNCH_FOLLOWER_MODULE,
-                        launcher_arg.LAUNCH_HYBRID_MODULE,
-                        launcher_arg.LAUNCH_UNFOLLOW_MODULE,
-                        launcher_arg.LAUNCH_MUTE_MODULE,
-
-                        Separator("======== " +launcher_arg.SEPARATOR_CONFIG_HELPER + " ======== \n"),
-                        launcher_arg.OPEN_CONFIG_HELPER,
-                        
-                        Separator("======== " + launcher_arg.SEPARATOR_DISCONNECT +' ======== \n'),
-                        launcher_arg.DISCONNECT_INSTABOT_ACCOUNT
-                        ],
-        },
-    ]
-    answers = prompt(questions, style=custom_style_3)
-    return answers.get('choice')

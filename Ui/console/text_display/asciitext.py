@@ -32,6 +32,16 @@ def display_connection():
     print("Connect your account to the instabot.")
     print("\n")
 
+def display_connection2():
+
+    print("   ___          ")                           
+    print("  / __\___  _ __  _ __   _____  _(_) ___  _ __   ")    
+    print(" / /  / _ \| '_ \| '_ \ / _ \ \/ / |/ _ \| '_ \  ")    
+    print("/ /__| (_) | | | | | | |  __/>  <| | (_) | | | | ")    
+    print("\____/\___/|_| |_|_| |_|\___/_/\_\_|\___/|_| |_| ")    
+                                                
+
+
 
 def display_configuration():
     print(" ██████  ██████  ███    ██ ███████ ██  ██████  ██    ██ ██████   █████  ████████ ██  ██████  ███    ██") 

@@ -26,15 +26,13 @@ def launch_configuration():
     print("\n")
     display_readme_helper()
     module_choice = ui_configuration.choose_module_configure()
+    terminal_command.clear()
     manage_options(module_choice)
-
-
-
 
 def display_readme_helper():
     print(Fore.LIGHTMAGENTA_EX)
-    print("If you never configure Instabot before, ")
-    print("Please open the documentation page on :" + Fore.LIGHTYELLOW_EX, "wwww.my-instabot.com/documentation")
+    print("Si tu n'as jamais configuré ton Instabot avant, ")
+    print("Vas sur la documentation officielle pour les tips :" + Fore.LIGHTYELLOW_EX, "wwww.my-instabot.com/documentation")
     print(Fore.WHITE)
 
 def bot_status():
@@ -57,43 +55,56 @@ def module_activation_speed():
     getconfig.set_module_activation(choice, module_const.HYBRID_MODULE)
     getconfig.set_module_speed(choice, module_const.HYBRID_MODULE)
 
-def hashtag_choice(module):
-    print(Fore.LIGHTMAGENTA_EX)
-    print("=========================")
-    print("Hashtags Configuration")
-    print("=========================")
-
+def hashtag_choice(module, isRestart):
+    if (isRestart == False):
+        print(Fore.MAGENTA)
+        print("Hashtags Configuration \n")
+    
     exist_hashtag = getconfig.get_hashtag(module)
-    if(exist_hashtag != ""):
-        print("\n")
-        print(Fore.WHITE, "you already have target hasthags : ")
-        print(Fore.RED, exist_hashtag, Fore.WHITE)
-        print("\n")
+
+    if(exist_hashtag != "" and isRestart == False):
+        print(Fore.YELLOW, "Tu as déjà configuré des Hashtags cibles : \n.")
+        print(Fore.RED, exist_hashtag, Fore.YELLOW)
+        print("\n" + "Que veux-tu faire ?", Fore.WHITE)
         choice =  ui_configuration.hastags_choice_options()
-        if (choice == hashtag_const.HASHTAGS_ADD_NEW):
-            new_hashtag = ui_configuration.enter_hashtags()
-            hashtag = exist_hashtag + " " + new_hashtag
-            getconfig.set_hashtag(hashtag, module)
-            hashtag_choice(module_const.HYBRID_MODULE)
-        if (choice == hashtag_const.HASHTAGS_FINISH_EXIT):
-            print(Fore.GREEN, "This module configuration is finish !!", Fore.WHITE)
-            isContinue = ui_configuration.is_want_new_config()
-            print(isContinue)
-            if(isContinue == "Yes"):
-                module_choice = ui_configuration.choose_module_configure()
-                manage_options(module_choice)
-            else:
-                return
+        manage_hastag_choice(choice, exist_hashtag, module)
+    
+    if(exist_hashtag != "" and isRestart == True):
+        choice =  ui_configuration.hastags_choice_options()
+        manage_hastag_choice(choice, exist_hashtag, module)
+
 
     else:
         ui_configuration.enter_hashtags()
         getconfig.set_hashtag(choice, module)
 
 
+def manage_hastag_choice(choice, exist_hashtag, module):
+    if (choice == hashtag_const.HASHTAGS_ADD_NEW):
+        new_hashtag = ui_configuration.enter_hashtags()
+        hashtag = exist_hashtag + " " + new_hashtag
+        getconfig.set_hashtag(hashtag, module)
+        terminal_command.clear()
+        print(Fore.GREEN, "Les hashtags suivants ont bien été ajoutés : " + new_hashtag, Fore.WHITE)
+        print(Fore.WHITE, "\n Tu veux modifier de nouveau les Hashtags ?")
+        hashtag_choice(module_const.HYBRID_MODULE, True)
+    
+    if (choice == hashtag_const.HASHTAGS_FINISH_EXIT):
+        terminal_command.clear()
+        print(Fore.GREEN, " \n Cette configuration de module est fini ! \n", Fore.WHITE)
+        isContinue = ui_configuration.is_want_new_config()
+        print(isContinue)
+        if(isContinue == "Oui"):
+            terminal_command.clear()
+            module_choice = ui_configuration.choose_module_configure()
+            manage_options(module_choice)
+        else:
+            return
+
 
 def manage_options(choice):
     #terminal_command.clear()
     if(choice == module_const.HYBRID_MODULE):
         module_activation_speed()
-        hashtag_choice(module_const.HYBRID_MODULE)
+        hashtag_choice(module_const.HYBRID_MODULE, False)
 

@@ -1,8 +1,9 @@
-# in te
+# internal
 import helpers.filehelper as filehelper
 import configuration.getconfig as getconfig
 import Ui.console.text_display.simpleprint as simpleprint
 import Ui.console.text_display.pyInquirer as pyInquirer_text
+import Ui.console.text_display.asciitext as ascciitext
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,6 +15,7 @@ import configuration.getconfig as config
 import time
 
 def connect_user_to_instabot(driver):
+    ascciitext.display_connection2()
     try:
         # accept cookies
         driver.find_element(by=By.XPATH, value ='/html/body/div[4]/div/div/button[1]').click()

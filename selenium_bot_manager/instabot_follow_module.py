@@ -18,17 +18,19 @@ import time
 import re
 
 def is_already_follow(driver):
-    try: 
-        is_follow_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button").get_attribute("innerHTML")))
-        #is_follow_input = driver.find_element(by=By.XPATH, value="/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button")
-        pattern = "\">(.*?)\</d"
-        follow_response = re.search(pattern, is_follow_input).group(1)
+   # try:
+        # is_follow_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button").get_attribute("innerHTML")))
+        is_follow_input = driver.find_element(by=By.XPATH, value="/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[1]/div/header/div[2]/div[1]/div[2]/button")
+        print(is_follow_input)
+        pattern = "\">(.*?)\</d"                                  
+        follow_response = re.search(pattern, str(is_follow_input))
+        print(follow_response)
         if(follow_response == 'Abonné(e)'):
            return True
         else:
             return False
-    except:
-        print("Can't know if already follow or not")
+   # except:
+    #    print("Can't know if already follow or not")
 
 
 def get_followed_person_name(driver):
